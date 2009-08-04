@@ -9,6 +9,8 @@ begin
     gem.email = "jonathan@tron.name"
     gem.homepage = "http://github.com/JonathanTron/rspec_sequel_matchers"
     gem.authors = ["Jonathan Tron", "Joseph Halter"]
+    gem.add_dependency "rspec"
+    gem.add_dependency "sequel"
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
