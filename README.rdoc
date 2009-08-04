@@ -1,7 +1,7 @@
 = rspec_sequel_matchers
 
-Description goes here.
+Some Sequel Matchers for RSpec
 
 == Copyright
 
-Copyright (c) 2009 Jonathan Tron. See LICENSE for details.
+Copyright (c) 2009 Jonathan Tron - Joseph Halter. See LICENSE for details.
