@@ -1,0 +1,7 @@
+= rspec_sequel_matchers
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Jonathan Tron. See LICENSE for details.
