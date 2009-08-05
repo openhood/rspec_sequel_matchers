@@ -1,6 +1,7 @@
 = rspec_sequel_matchers
 
-Some Sequel Matchers for RSpec
+Some Sequel Matchers for RSpec, using no other gem than rspec and sequel themself.
+As a consequence, you can use these matchers with Rails, Sinatra or any other framework.
 
 == Copyright
 
