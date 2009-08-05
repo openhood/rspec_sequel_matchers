@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rspec_sequel_matchers}
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jonathan Tron", "Joseph Halter"]
@@ -21,11 +21,13 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/rspec_sequel/base.rb",
      "lib/rspec_sequel/matchers/have_column.rb",
-     "lib/rspec_sequel/matchers/validate_presence_of.rb",
+     "lib/rspec_sequel/matchers/validate_presence.rb",
      "lib/rspec_sequel_matchers.rb",
+     "rspec_sequel_matchers.gemspec",
      "spec/have_column_matcher_spec.rb",
      "spec/migrations/001_create_items.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/validate_presence_matcher_spec.rb"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/JonathanTron/rspec_sequel_matchers}
@@ -36,7 +38,8 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/have_column_matcher_spec.rb",
      "spec/migrations/001_create_items.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/validate_presence_matcher_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
