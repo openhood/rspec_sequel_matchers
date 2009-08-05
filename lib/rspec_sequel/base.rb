@@ -24,6 +24,9 @@ module RspecSequel
     def negative_failure_message
       [@prefix, "not", description, @suffix].flatten.compact.join(" ")
     end
+    def hash_to_nice_string(hash)
+      hash.sort.collect{|param| param.join(" => ")}.join(", ")
+    end
   end
 
 end
