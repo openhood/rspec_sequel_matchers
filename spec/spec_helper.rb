@@ -2,11 +2,7 @@ require "spec"
 require "rubygems"
 require "sequel"
 require "sequel/extensions/migration"
-
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
-
-require "rspec_sequel_matchers"
+require File.join(File.dirname(__FILE__), "..", "lib", "rspec_sequel_matchers")
 
 # connect to an in-memory database
 begin
@@ -19,17 +15,17 @@ Spec::Runner.configure do |config|
   config.include(RspecSequel::Matchers)
   
   config.before(:all) do
-    DB = Sequel::Model.db
-    DB.tables.each do |table_name|
-      DB["DROP #{table_name}"]
+    db = Sequel::Model.db
+    db.tables.each do |table_name|
+      db["DROP #{table_name}"]
     end
-    Sequel::Migrator.apply(DB, File.join(File.dirname(__FILE__), "migrations"))
+    Sequel::Migrator.apply(db, File.join(File.dirname(__FILE__), "migrations"))
   end
 
   config.after(:each) do
-    DB = Sequel::Model.db
-    DB.tables.each do |table_name|
-      DB["TRUNCATE #{table_name}"]
+    db = Sequel::Model.db
+    db.tables.each do |table_name|
+      db["TRUNCATE #{table_name}"]
     end
   end
 

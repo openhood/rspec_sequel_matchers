@@ -12,7 +12,9 @@ module RspecSequel
         @prefix = "expected #{target.inspect} to"
         valid?(target.db, target, target.class, @attribute, @options)
       else
-        @prefix = "expected #{target.name || target.table_name} to"
+        name = target.name
+        name = target.table_name if name.nil? || name==""
+        @prefix = "expected #{name} to"
         valid?(target.db, target.new, target, @attribute, @options)
       end
     end

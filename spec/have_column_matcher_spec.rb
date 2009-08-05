@@ -77,11 +77,11 @@ describe "have_column_matcher" do
   end
 
   describe "matchers" do
-    it{ should have_column :name }
-    it{ should have_column :name, :type => :string }
-    it{ should have_column :name, :type => String }
-    it{ should_not have_column :wrong_name }
-    it{ should_not have_column :name, :type => :integer }
+    it{ should have_column(:name) }
+    it{ should have_column(:name, :type => :string) }
+    it{ should have_column(:name, :type => String) }
+    it{ should_not have_column(:wrong_name) }
+    it{ should_not have_column(:name, :type => :integer) }
   end
 
 end
