@@ -3,6 +3,20 @@
 Some Sequel Matchers for RSpec, using no other gem than rspec and sequel themself.
 As a consequence, you can use these matchers with Rails, Sinatra or any other framework.
 
+Validation matchers assume that you're using the recommanded validation_helpers plugin.
+
+== Install
+
+  sudo gem install JonathanTron-rspec_sequel_matchers
+
+== Example usage
+
+  describe Item do
+    it{ should have_column :name, :type => String }
+    it{ should_not have_column :wrong_name }
+    it{ should_validate_presence :name, :allow_nil => true }
+  end
+
 == Copyright
 
 Copyright (c) 2009 Jonathan Tron - Joseph Halter. See LICENSE for details.
