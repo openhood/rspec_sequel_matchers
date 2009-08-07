@@ -17,7 +17,7 @@ Spec::Runner.configure do |config|
   config.before(:all) do
     db = Sequel::Model.db
     db.tables.each do |table_name|
-      db["DROP #{table_name}"]
+      db.drop_table table_name
     end
     Sequel::Migrator.apply(db, File.join(File.dirname(__FILE__), "migrations"))
   end
