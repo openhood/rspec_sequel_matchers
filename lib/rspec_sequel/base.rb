@@ -25,7 +25,7 @@ module RspecSequel
       [@prefix, "not", description, @suffix].flatten.compact.join(" ")
     end
     def hash_to_nice_string(hash)
-      hash.sort.collect{|param| param.join(" => ")}.join(", ")
+      hash.sort{|a,b| a[0].to_s<=>b[0].to_s}.collect{|param| param.collect{|v| v.inspect}.join(" => ")}.join(", ")
     end
   end
 

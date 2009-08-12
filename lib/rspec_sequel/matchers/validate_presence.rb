@@ -2,11 +2,10 @@ module RspecSequel
   module Matchers
 
     class ValidatePresenceMatcher < RspecSequel::Base
+
       def description
-        desc = "validate presence of :#{@attribute}"
-        unless @options.empty?
-          desc << " with #{hash_to_nice_string @options}"
-        end
+        desc = "validate presence of #{@attribute.inspect}"
+        desc << " with #{hash_to_nice_string @options}" unless @options.empty?
         desc
       end
 
@@ -21,7 +20,7 @@ module RspecSequel
               called_count += 1
             else
               called_options = args.shift
-              @suffix << "(called with #{hash_to_nice_string called_options})"
+              @suffix << "but called with #{hash_to_nice_string called_options} instead"
               called_count +=1 if called_options==options
             end
           end
@@ -29,6 +28,7 @@ module RspecSequel
         i.valid?
         called_count==1
       end
+
     end
 
     def validate_presence(*args)
