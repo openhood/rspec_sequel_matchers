@@ -9,16 +9,14 @@ module RspecSequel
       end
 
       def valid?(db, i, c, attribute, options)
-
-        # check column existance
         called_count = 0
         i = i.dup
         i.stub!(:validates_presence).and_return{|*args|
-          if args.shift==attribute
+          called_options = args.last.is_a?(Hash) ? args.pop : {};
+          if args.include?(attribute)
             if options.empty?
               called_count += 1
             else
-              called_options = args.shift
               @suffix << "but called with #{hash_to_nice_string called_options} instead"
               called_count +=1 if called_options==options
             end

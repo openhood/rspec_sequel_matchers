@@ -1,9 +1,8 @@
 require File.dirname(__FILE__) + "/spec_helper"
 
 class Item < Sequel::Model
-  plugin :validation_helpers
   def validate
-    validates_presence :name, :allow_nil => true
+    validates_presence :id, :name, :allow_nil => true
   end
 end
 
