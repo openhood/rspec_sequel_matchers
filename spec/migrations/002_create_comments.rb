@@ -6,6 +6,7 @@ class CreateComments < Sequel::Migration
       foreign_key :item_id, :items, :type => Fixnum
       String      :content
       DateTime    :created_at
+      index       :item_id
     end
   end
 
