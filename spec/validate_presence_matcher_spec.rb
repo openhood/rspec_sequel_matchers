@@ -40,6 +40,12 @@ describe "validate_presence_matcher" do
         @matcher.failure_message.should == "expected Item to validate presence of :name with :allow_blank => true but called with :allow_nil => true instead"
         @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
       end
+      it "should warn if invalid options are used" do
+        @matcher = validate_presence :name, :allow_anything => true
+        @matcher.matches? subject
+        @matcher.failure_message.should == "expected Item to validate presence of :name with :allow_anything => true but option :allow_anything is not valid"
+        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+      end
     end
   end
 
