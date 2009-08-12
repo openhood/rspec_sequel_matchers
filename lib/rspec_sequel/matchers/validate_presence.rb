@@ -2,7 +2,6 @@ module RspecSequel
   module Matchers
 
     class ValidatePresenceMatcher < RspecSequel::Base
-
       def description
         desc = "validate presence of #{@attribute.inspect}"
         desc << " with #{hash_to_nice_string @options}" unless @options.empty?
@@ -28,7 +27,6 @@ module RspecSequel
         i.valid?
         called_count==1
       end
-
     end
 
     def validate_presence(*args)

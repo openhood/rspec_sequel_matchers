@@ -2,7 +2,6 @@ module RspecSequel
   module Matchers
 
     class HaveColumnMatcher < RspecSequel::Base
-
       def description
         desc = "have a column #{@attribute.inspect}"
         desc << " with type #{@options[:type]}" if @options[:type]
@@ -26,7 +25,6 @@ module RspecSequel
         end
         matching
       end
-
     end
 
     def have_column(*args)

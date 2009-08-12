@@ -1,5 +1,7 @@
 # Load base
-require File.join(File.dirname(__FILE__), "rspec_sequel", "base")
+["base", "association"].each do |file|
+  require File.join(File.dirname(__FILE__), "rspec_sequel", file)
+end
 
 # Add matchers
 Dir[File.join(File.dirname(__FILE__), "rspec_sequel", "matchers", "*.rb")].each do |file|

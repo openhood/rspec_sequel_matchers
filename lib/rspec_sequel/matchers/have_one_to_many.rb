@@ -1,9 +1,9 @@
 module RspecSequel
   module Matchers
 
-    class HaveManyToOneMatcher < RspecSequel::Association
+    class HaveOneToManyMatcher < RspecSequel::Association
       def association_type
-        :many_to_one
+        :one_to_many
       end
       
       def valid?(db, i, c, attribute, options)
@@ -14,8 +14,8 @@ module RspecSequel
       end
     end
 
-    def have_many_to_one(*args)
-      HaveManyToOneMatcher.new(*args)
+    def have_one_to_many(*args)
+      HaveOneToManyMatcher.new(*args)
     end
 
   end
