@@ -11,9 +11,15 @@ rescue Sequel::AdapterNotFound
   puts "sqlite not available. Install it with: sudo gem install sqlite3-ruby"
 end
 
+# load models
+Dir.glob(File.join(File.dirname(__FILE__), "models", "*.rb")).each do |m|
+  require m
+end
+
 Spec::Runner.configure do |config|
   config.include(RspecSequel::Matchers)
   
+  # drop all tables and migrate before first spec
   config.before(:all) do
     db = Sequel::Model.db
     db.tables.each do |table_name|
@@ -22,6 +28,7 @@ Spec::Runner.configure do |config|
     Sequel::Migrator.apply(db, File.join(File.dirname(__FILE__), "migrations"))
   end
 
+  # truncate all tables between each spec
   config.after(:each) do
     db = Sequel::Model.db
     db.tables.each do |table_name|

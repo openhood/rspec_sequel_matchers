@@ -1,11 +1,5 @@
 require File.dirname(__FILE__) + "/spec_helper"
 
-class Item < Sequel::Model
-  one_to_many :comments
-end
-class Comment < Sequel::Model
-end
-
 describe "have_one_to_many_matcher" do
 
   subject{ Item }
