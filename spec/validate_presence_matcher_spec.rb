@@ -10,6 +10,19 @@ describe "validate_presence_matcher" do
 
   subject{ Item }
 
+  describe "arguments" do
+    it "should require attribute" do
+      lambda{
+        @matcher = validate_presence
+      }.should raise_error(ArgumentError)
+    end
+    it "should refuse additionnal parameters" do
+      lambda{
+        @matcher = validate_presence :name, :id
+      }.should raise_error(ArgumentError)
+    end
+  end
+
   describe "messages" do
     describe "without option" do
       it "should contain a description" do

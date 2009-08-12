@@ -2,6 +2,7 @@ module RspecSequel
 
   class Base
     def initialize(attribute, options={})
+      raise ArgumentError, "not enough params for matcher, required attribute is missing" if attribute.nil?
       @attribute = attribute.to_sym
       @options = options
       @description = []

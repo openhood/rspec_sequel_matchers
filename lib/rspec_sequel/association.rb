@@ -1,6 +1,6 @@
 module RspecSequel
 
-  class Association < RspecSequel::Base
+  class Association < Base
 
     def description
       desc = "have a #{association_type} association #{@attribute.inspect}"

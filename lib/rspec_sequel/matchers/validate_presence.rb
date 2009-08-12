@@ -1,7 +1,7 @@
 module RspecSequel
   module Matchers
 
-    class ValidatePresenceMatcher < RspecSequel::Base
+    class ValidatePresenceMatcher < RspecSequel::Validation
       def description
         desc = "validate presence of #{@attribute.inspect}"
         desc << " with #{hash_to_nice_string @options}" unless @options.empty?
@@ -9,9 +9,7 @@ module RspecSequel
       end
 
       def valid?(db, i, c, attribute, options)
-        valid_options = [:allow_blank, :allow_missing, :allow_nil, :message]
-        invalid_options = options.keys.reject{|o| valid_options.include?(o)}
-        if invalid_options.empty?
+        if matching = super
           called_count = 0
           i = i.dup
           i.stub!(:validates_presence).and_return{|*args|
@@ -26,13 +24,9 @@ module RspecSequel
             end
           }
           i.valid?
-          called_count==1
-        else
-          invalid_options.each{|o|
-            @suffix << "but option #{o.inspect} is not valid"
-          }
-          false
+          matching = called_count==1
         end
+        matching
       end
     end
 

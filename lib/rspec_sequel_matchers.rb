@@ -1,5 +1,5 @@
 # Load base
-["base", "association"].each do |file|
+["base", "association", "validation"].each do |file|
   require File.join(File.dirname(__FILE__), "rspec_sequel", file)
 end
 
