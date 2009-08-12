@@ -43,6 +43,7 @@ module RspecSequel
       # check validation itself
       called_count = 0
       i = i.dup
+      i.class.columns # ensure colums are read again after .dup
       i.stub!(validation_type).and_return{|*args|
         called_options = args.last.is_a?(Hash) ? args.pop : {}
         called_additionnal = args.shift if additionnal_param_required?
