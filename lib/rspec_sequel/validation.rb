@@ -9,13 +9,11 @@ module RspecSequel
 
       # check additionnal param
       if additionnal_param_required?
-        if args.empty?
-          raise ArgumentError, "not enough params for matcher, required #{additionnal_param_type.inspect} parameter is missing"
-        elsif args.size>1
+        if args.size>1
           raise ArgumentError, "too many params for matcher"
         else
           @additionnal = args.pop
-          raise ArgumentError, "invalid first parameter, expected #{additionnal_param_type.inspect} received #{@additionnal.class.inspect}" unless @additionnal.kind_of?(additionnal_param_type)
+          raise ArgumentError, "expected matcher first parameter to be #{additionnal_param_type.inspect} but received #{@additionnal.class.inspect} instead" unless @additionnal.kind_of?(additionnal_param_type)
         end
       else
         raise ArgumentError, "too many params for matcher" unless args.empty?
@@ -35,11 +33,35 @@ module RspecSequel
     end
 
     def valid?(db, i, c, attribute, options)
+      # check options
       invalid_options = options.keys.reject{|o| valid_options.include?(o)}
       invalid_options.each{|o|
         @suffix << "but option #{o.inspect} is not valid"
       }
-      invalid_options.empty?
+      return false unless invalid_options.empty?
+
+      # check validation itself
+      called_count = 0
+      i = i.dup
+      i.stub!(validation_type).and_return{|*args|
+        called_options = args.last.is_a?(Hash) ? args.pop : {}
+        called_additionnal = args.shift if additionnal_param_required?
+        if args.include?(attribute)
+          if additionnal_param_required? && @additionnal!=called_additionnal
+            @suffix << "but called with #{called_additionnal} instead"
+          elsif !options.empty? && called_options!=options
+            @suffix << "but called with option(s) #{hash_to_nice_string called_options} instead"
+          else
+            called_count += 1
+          end
+        end
+      }
+      i.valid?
+      if called_count>1
+        @suffix << "but validation is called too many times"
+        return false
+      end
+      called_count==1
     end
 
   end

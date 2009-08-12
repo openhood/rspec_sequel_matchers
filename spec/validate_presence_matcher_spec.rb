@@ -50,7 +50,7 @@ describe "validate_presence_matcher" do
       it "should explicit used options if different than expected" do
         @matcher = validate_presence :name, :allow_blank => true
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate presence of :name with :allow_blank => true but called with :allow_nil => true instead"
+        @matcher.failure_message.should == "expected Item to validate presence of :name with :allow_blank => true but called with option(s) :allow_nil => true instead"
         @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
       end
       it "should warn if invalid options are used" do
