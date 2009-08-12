@@ -11,11 +11,6 @@ rescue Sequel::AdapterNotFound
   puts "sqlite not available. Install it with: sudo gem install sqlite3-ruby"
 end
 
-# load models
-Dir.glob(File.join(File.dirname(__FILE__), "models", "*.rb")).each do |m|
-  require m
-end
-
 Spec::Runner.configure do |config|
   config.include(RspecSequel::Matchers)
   

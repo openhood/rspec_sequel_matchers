@@ -1,9 +1,15 @@
 require File.dirname(__FILE__) + "/spec_helper"
 
-class Item < Sequel::Model
-end
-
 describe "have_column_matcher" do
+
+  before :all do
+    class Item < Sequel::Model
+    end
+  end
+
+  after :all do
+    Object.send(:remove_const, :Item)
+  end
 
   subject{ Item }
 

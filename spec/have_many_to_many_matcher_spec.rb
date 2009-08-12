@@ -2,6 +2,19 @@ require File.dirname(__FILE__) + "/spec_helper"
 
 describe "have_many_to_many_matcher" do
 
+  before :all do
+    class Comment < Sequel::Model
+      many_to_many :items
+    end
+    class Item < Sequel::Model
+    end
+  end
+
+  after :all do
+    Object.send(:remove_const, :Comment)
+    Object.send(:remove_const, :Item)
+  end
+
   subject{ Comment }
 
   describe "messages" do

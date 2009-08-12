@@ -46,8 +46,11 @@ module RspecSequel
       i.class.columns # ensure colums are read again after .dup
       i.stub!(validation_type).and_return{|*args|
         called_options = args.last.is_a?(Hash) ? args.pop : {}
+        called_attributes = [args.pop].flatten
         called_additionnal = args.shift if additionnal_param_required?
-        if args.include?(attribute)
+        if !args.empty?
+          @suffix << "but called with too many params"
+        elsif called_attributes.include?(attribute)
           if additionnal_param_required? && @additionnal!=called_additionnal
             @suffix << "but called with #{called_additionnal} instead"
           elsif !options.empty? && called_options!=options
