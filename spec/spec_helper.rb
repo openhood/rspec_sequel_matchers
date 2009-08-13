@@ -10,7 +10,15 @@ begin
   Sequel.sqlite
 rescue Sequel::AdapterNotFound
   puts "sqlite not available. Install it with: sudo gem install sqlite3-ruby"
+  return 0 # failure
 end
+
+# drop all tables and migrate on start
+db = Sequel::Model.db
+db.tables.each do |table_name|
+  db.drop_table table_name
+end
+Sequel::Migrator.apply(db, File.join(File.dirname(__FILE__), "migrations"))
 
 def define_model(model, &block)
   model_name = model.to_s.camelize.to_sym
@@ -21,26 +29,15 @@ def define_model(model, &block)
   klass.class_eval &block if block_given?
 end
 
-def undefine_models
-  @defined_models.each{|model_name|
-    Object.send(:remove_const, model_name)
-  }
-  @defined_models = []
-end
-
-# drop all tables and migrate on start
-db = Sequel::Model.db
-db.tables.each do |table_name|
-  db.drop_table table_name
-end
-Sequel::Migrator.apply(db, File.join(File.dirname(__FILE__), "migrations"))
-
 Spec::Runner.configure do |config|
   config.include(RspecSequel::Matchers)
 
   # undefine models defined via define_model (if any)
   config.after(:all) do
-    undefine_models
+    @defined_models.each{|model_name|
+      Object.send(:remove_const, model_name)
+    }
+    @defined_models = nil
   end
 
   # truncate all tables between each spec
