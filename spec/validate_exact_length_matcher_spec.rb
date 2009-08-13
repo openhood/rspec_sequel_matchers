@@ -40,7 +40,7 @@ describe "validate_exact_length_matcher" do
     describe "without option" do
       it "should contain a description" do
         @matcher = validate_exact_length 4, :name
-        @matcher.description.should == "validate exact length of :name to 4"
+        @matcher.description.should == "validate length of :name is exactly 4"
       end
       it "should set failure messages" do
         @matcher = validate_exact_length 4, :name
@@ -52,7 +52,7 @@ describe "validate_exact_length_matcher" do
     describe "with options" do
       it "should contain a description" do
         @matcher = validate_exact_length 4, :name, :allow_nil => true
-        @matcher.description.should == "validate exact length of :name to 4 with option(s) :allow_nil => true"
+        @matcher.description.should == "validate length of :name is exactly 4 with option(s) :allow_nil => true"
       end
       it "should set failure messages" do
         @matcher = validate_exact_length 4, :price, :allow_nil => true
