@@ -3,10 +3,10 @@ require File.dirname(__FILE__) + "/spec_helper"
 describe "have_many_to_many_matcher" do
 
   before :all do
-    define_model(:Item)
-    define_model(:Comment){
+    define_model :item
+    define_model :comment do
       many_to_many :items
-    }
+    end
   end
 
   subject{ Comment }

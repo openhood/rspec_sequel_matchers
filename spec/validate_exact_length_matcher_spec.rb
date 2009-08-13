@@ -3,12 +3,12 @@ require File.dirname(__FILE__) + "/spec_helper"
 describe "validate_exact_length_matcher" do
 
   before :all do
-    define_model(:Item){
+    define_model :item do
       plugin :validation_helpers
       def validate
         validates_exact_length 4, :name, :allow_nil => true
       end
-    }
+    end
   end
 
   subject{ Item }

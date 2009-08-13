@@ -13,15 +13,17 @@ rescue Sequel::AdapterNotFound
 end
 
 def define_model(model, &block)
+  model_name = model.to_s.camelize.to_sym
+  table_name = model.to_s.tableize.to_sym
   @defined_models ||= []
-  @defined_models << model
-  klass = Object.const_set model, Sequel::Model(model.to_s.tableize.to_sym)
+  @defined_models << model_name
+  klass = Object.const_set model_name, Sequel::Model(table_name)
   klass.class_eval &block if block_given?
 end
 
 def undefine_models
-  @defined_models.each{|model|
-    Object.send(:remove_const, model)
+  @defined_models.each{|model_name|
+    Object.send(:remove_const, model_name)
   }
   @defined_models = []
 end
