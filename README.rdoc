@@ -1,9 +1,34 @@
 = rspec_sequel_matchers
 
-Some Sequel Matchers for RSpec, using no other gem than rspec and sequel themself.
-As a consequence, you can use these matchers with Rails, Sinatra or any other framework.
+Some Sequel Matchers for RSpec, using no other gem than rspec and sequel themself. As a consequence, you can use these matchers with Rails, Sinatra or any other framework. It's pretty feature complete.
 
-Validation matchers assume that you're using the recommanded validation_helpers plugin.
+Matchers assume that you're using the recommanded validation_helpers plugin. All instance validation methods are supported, namely:
+* validates_exact_length
+* validates_format
+* validates_includes
+* validates_integer
+* validates_length_range
+* validates_max_length
+* validates_min_length
+* validates_not_string
+* validates_numeric
+* validates_presence
+* validates_unique
+
+Each one with all possible options, namely:
+* :allow_blank
+* :allow_missing
+* :allow_nil
+* :message
+
+There're also matchers for associations class methods:
+* :many_to_many
+* :many_to_one
+* :one_to_many
+
+And there's an additionnal matcher have_column to check columns existance and their type, see example usage bellow.
+
+RspecSequel::Matchers has an extensive test suite and will give you as much explanation as possible in failure messages such as expected column type versus column type found in database.
 
 == Install
 
