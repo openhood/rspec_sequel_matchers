@@ -28,16 +28,19 @@ def undefine_models
   @defined_models = []
 end
 
+# drop all tables and migrate on start
+db = Sequel::Model.db
+db.tables.each do |table_name|
+  db.drop_table table_name
+end
+Sequel::Migrator.apply(db, File.join(File.dirname(__FILE__), "migrations"))
+
 Spec::Runner.configure do |config|
   config.include(RspecSequel::Matchers)
-  
-  # drop all tables and migrate before first spec
-  config.before(:all) do
-    db = Sequel::Model.db
-    db.tables.each do |table_name|
-      db.drop_table table_name
-    end
-    Sequel::Migrator.apply(db, File.join(File.dirname(__FILE__), "migrations"))
+
+  # undefine models defined via define_model (if any)
+  config.after(:all) do
+    undefine_models
   end
 
   # truncate all tables between each spec
@@ -46,11 +49,6 @@ Spec::Runner.configure do |config|
     db.tables.each do |table_name|
       db["TRUNCATE #{table_name}"]
     end
-  end
-
-  # undefine models defined via define_model
-  config.after(:all) do
-    undefine_models
   end
 
 end
