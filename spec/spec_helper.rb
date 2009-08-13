@@ -10,7 +10,7 @@ begin
   Sequel.sqlite
 rescue Sequel::AdapterNotFound
   puts "sqlite not available. Install it with: sudo gem install sqlite3-ruby"
-  return 0 # failure
+  exit 1 # failure
 end
 
 # drop all tables and migrate on start
