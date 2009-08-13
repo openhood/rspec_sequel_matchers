@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rspec_sequel_matchers}
-  s.version = "0.0.2"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jonathan Tron", "Joseph Halter"]
@@ -26,7 +26,16 @@ Gem::Specification.new do |s|
      "lib/rspec_sequel/matchers/have_many_to_one.rb",
      "lib/rspec_sequel/matchers/have_one_to_many.rb",
      "lib/rspec_sequel/matchers/validate_exact_length.rb",
+     "lib/rspec_sequel/matchers/validate_format.rb",
+     "lib/rspec_sequel/matchers/validate_includes.rb",
+     "lib/rspec_sequel/matchers/validate_integer.rb",
+     "lib/rspec_sequel/matchers/validate_length_range.rb",
+     "lib/rspec_sequel/matchers/validate_max_length.rb",
+     "lib/rspec_sequel/matchers/validate_min_length.rb",
+     "lib/rspec_sequel/matchers/validate_not_string.rb",
+     "lib/rspec_sequel/matchers/validate_numeric.rb",
      "lib/rspec_sequel/matchers/validate_presence.rb",
+     "lib/rspec_sequel/matchers/validate_unique.rb",
      "lib/rspec_sequel/validation.rb",
      "lib/rspec_sequel_matchers.rb",
      "rspec_sequel_matchers.gemspec",
@@ -39,7 +48,16 @@ Gem::Specification.new do |s|
      "spec/migrations/003_create_comments_items.rb",
      "spec/spec_helper.rb",
      "spec/validate_exact_length_matcher_spec.rb",
-     "spec/validate_presence_matcher_spec.rb"
+     "spec/validate_format_matcher_spec.rb",
+     "spec/validate_includes_matcher_spec.rb",
+     "spec/validate_integer_matcher_spec.rb",
+     "spec/validate_length_range_matcher_spec.rb",
+     "spec/validate_max_length_matcher_spec.rb",
+     "spec/validate_min_length_matcher_spec.rb",
+     "spec/validate_not_string_matcher_spec.rb",
+     "spec/validate_numeric_matcher_spec.rb",
+     "spec/validate_presence_matcher_spec.rb",
+     "spec/validate_unique_matcher_spec.rb"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/JonathanTron/rspec_sequel_matchers}
@@ -57,7 +75,16 @@ Gem::Specification.new do |s|
      "spec/migrations/003_create_comments_items.rb",
      "spec/spec_helper.rb",
      "spec/validate_exact_length_matcher_spec.rb",
-     "spec/validate_presence_matcher_spec.rb"
+     "spec/validate_format_matcher_spec.rb",
+     "spec/validate_includes_matcher_spec.rb",
+     "spec/validate_integer_matcher_spec.rb",
+     "spec/validate_length_range_matcher_spec.rb",
+     "spec/validate_max_length_matcher_spec.rb",
+     "spec/validate_min_length_matcher_spec.rb",
+     "spec/validate_not_string_matcher_spec.rb",
+     "spec/validate_numeric_matcher_spec.rb",
+     "spec/validate_presence_matcher_spec.rb",
+     "spec/validate_unique_matcher_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
