@@ -1,24 +1,24 @@
 module RspecSequel
   module Matchers
 
-    class ValidateFormatMatcher < RspecSequel::Validation
+    class ValidateIncludesMatcher < RspecSequel::Validation
       def description
-        desc = "validate format of #{@attribute.inspect} against #{@additionnal.inspect}"
+        desc = "validate that #{@attribute.inspect} is included in #{@additionnal.inspect}"
         desc << " with option(s) #{hash_to_nice_string @options}" unless @options.empty?
         desc
       end
 
       def additionnal_param_type
-        Regexp
+        Enumerable
       end
 
       def validation_type
-        :validates_format
+        :validates_includes
       end
     end
 
-    def validate_format(*args)
-      ValidateFormatMatcher.new(*args)
+    def validate_includes(*args)
+      ValidateIncludesMatcher.new(*args)
     end
 
   end

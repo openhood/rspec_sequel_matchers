@@ -4,7 +4,7 @@ module RspecSequel
     class ValidatePresenceMatcher < RspecSequel::Validation
       def description
         desc = "validate presence of #{@attribute.inspect}"
-        desc << " with #{hash_to_nice_string @options}" unless @options.empty?
+        desc << " with option(s) #{hash_to_nice_string @options}" unless @options.empty?
         desc
       end
 

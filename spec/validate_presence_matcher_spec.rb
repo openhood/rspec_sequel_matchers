@@ -35,32 +35,34 @@ describe "validate_presence_matcher" do
       it "should set failure messages" do
         @matcher = validate_presence :name
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate presence of :name"
-        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+        @matcher.failure_message.should == "expected Item to " + @matcher.description
+        @matcher.negative_failure_message.should == "expected Item to not " + @matcher.description
       end
     end
     describe "with options" do
       it "should contain a description" do
         @matcher = validate_presence :name, :allow_nil => true
-        @matcher.description.should == "validate presence of :name with :allow_nil => true"
+        @matcher.description.should == "validate presence of :name with option(s) :allow_nil => true"
       end
       it "should set failure messages" do
         @matcher = validate_presence :price, :allow_nil => true
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate presence of :price with :allow_nil => true"
-        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+        @matcher.failure_message.should == "expected Item to " + @matcher.description
+        @matcher.negative_failure_message.should == "expected Item to not " + @matcher.description
       end
       it "should explicit used options if different than expected" do
         @matcher = validate_presence :name, :allow_blank => true
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate presence of :name with :allow_blank => true but called with option(s) :allow_nil => true instead"
-        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+        explanation = " but called with option(s) :allow_nil => true instead"
+        @matcher.failure_message.should == "expected Item to " + @matcher.description + explanation
+        @matcher.negative_failure_message.should == "expected Item to not " + @matcher.description + explanation
       end
       it "should warn if invalid options are used" do
         @matcher = validate_presence :name, :allow_anything => true
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate presence of :name with :allow_anything => true but option :allow_anything is not valid"
-        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+        explanation = " but option :allow_anything is not valid"
+        @matcher.failure_message.should == "expected Item to " + @matcher.description + explanation
+        @matcher.negative_failure_message.should == "expected Item to not " + @matcher.description + explanation
       end
     end
   end

@@ -4,7 +4,7 @@ module RspecSequel
     class ValidateExactLengthMatcher < RspecSequel::Validation
       def description
         desc = "validate exact length of #{@attribute.inspect} to #{@additionnal.inspect}"
-        desc << " with #{hash_to_nice_string @options}" unless @options.empty?
+        desc << " with option(s) #{hash_to_nice_string @options}" unless @options.empty?
         desc
       end
 

@@ -45,32 +45,34 @@ describe "validate_exact_length_matcher" do
       it "should set failure messages" do
         @matcher = validate_exact_length 4, :name
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate exact length of :name to 4"
-        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+        @matcher.failure_message.should == "expected Item to " + @matcher.description
+        @matcher.negative_failure_message.should == "expected Item to not " + @matcher.description
       end
     end
     describe "with options" do
       it "should contain a description" do
         @matcher = validate_exact_length 4, :name, :allow_nil => true
-        @matcher.description.should == "validate exact length of :name to 4 with :allow_nil => true"
+        @matcher.description.should == "validate exact length of :name to 4 with option(s) :allow_nil => true"
       end
       it "should set failure messages" do
         @matcher = validate_exact_length 4, :price, :allow_nil => true
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate exact length of :price to 4 with :allow_nil => true"
-        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+        @matcher.failure_message.should == "expected Item to " + @matcher.description
+        @matcher.negative_failure_message.should == "expected Item to not " + @matcher.description
       end
       it "should explicit used options if different than expected" do
         @matcher = validate_exact_length 4, :name, :allow_blank => true
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate exact length of :name to 4 with :allow_blank => true but called with option(s) :allow_nil => true instead"
-        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+        explanation = " but called with option(s) :allow_nil => true instead"
+        @matcher.failure_message.should == "expected Item to " + @matcher.description + explanation
+        @matcher.negative_failure_message.should == "expected Item to not " + @matcher.description + explanation
       end
       it "should warn if invalid options are used" do
         @matcher = validate_exact_length 4, :name, :allow_anything => true
         @matcher.matches? subject
-        @matcher.failure_message.should == "expected Item to validate exact length of :name to 4 with :allow_anything => true but option :allow_anything is not valid"
-        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to validate", "to not validate")
+        explanation = " but option :allow_anything is not valid"
+        @matcher.failure_message.should == "expected Item to " + @matcher.description + explanation
+        @matcher.negative_failure_message.should == "expected Item to not " + @matcher.description + explanation
       end
     end
   end
