@@ -27,7 +27,7 @@ describe "have_one_to_many_matcher" do
     describe "with options" do
       it "should contain a description" do
         @matcher = have_one_to_many :comments, :class_name => "Comment"
-        @matcher.description.should == 'have a one_to_many association :comments with :class_name => "Comment"'
+        @matcher.description.should == 'have a one_to_many association :comments with option(s) :class_name => "Comment"'
       end
       it "should set failure messages" do
         @matcher = have_one_to_many :comments, :class_name => "Comment"

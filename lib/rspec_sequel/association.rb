@@ -4,7 +4,7 @@ module RspecSequel
 
     def description
       desc = "have a #{association_type} association #{@attribute.inspect}"
-      desc << " with #{hash_to_nice_string @options}" unless @options.empty?
+      desc << " with option(s) #{hash_to_nice_string @options}" unless @options.empty?
       desc
     end
 

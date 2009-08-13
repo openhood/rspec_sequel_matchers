@@ -27,7 +27,7 @@ describe "have_many_to_one_matcher" do
     describe "with options" do
       it "should contain a description" do
         @matcher = have_many_to_one :item, :class_name => "Item"
-        @matcher.description.should == 'have a many_to_one association :item with :class_name => "Item"'
+        @matcher.description.should == 'have a many_to_one association :item with option(s) :class_name => "Item"'
       end
       it "should set failure messages" do
         @matcher = have_many_to_one :item, :class_name => "Item"
