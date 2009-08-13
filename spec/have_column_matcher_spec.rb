@@ -3,12 +3,7 @@ require File.dirname(__FILE__) + "/spec_helper"
 describe "have_column_matcher" do
 
   before :all do
-    class Item < Sequel::Model
-    end
-  end
-
-  after :all do
-    Object.send(:remove_const, :Item)
+    define_model :Item
   end
 
   subject{ Item }
@@ -23,7 +18,7 @@ describe "have_column_matcher" do
         @matcher = have_column :name
         @matcher.matches? subject
         @matcher.failure_message.should == "expected Item to have a column :name"
-        @matcher.negative_failure_message.should == "expected Item to not have a column :name"
+        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to have", "to not have")
       end
     end
     describe "with type as symbol" do
@@ -35,7 +30,7 @@ describe "have_column_matcher" do
         @matcher = have_column :password, :type => :string
         @matcher.matches? subject
         @matcher.failure_message.should == "expected Item to have a column :password with type string"
-        @matcher.negative_failure_message.should == "expected Item to not have a column :password with type string"
+        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to have", "to not have")
       end
     end
     describe "with type as object" do
@@ -47,21 +42,21 @@ describe "have_column_matcher" do
         @matcher = have_column :password, :type => String
         @matcher.matches? subject
         @matcher.failure_message.should == "expected Item to have a column :password with type String"
-        @matcher.negative_failure_message.should == "expected Item to not have a column :password with type String"
+        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to have", "to not have")
       end
       it "should explicit found type if different than expected" do
         @matcher = have_column :name, :type => Integer
         @matcher.matches? subject
         @matcher.failure_message.should == "expected Item to have a column :name with type Integer (type found: string, varchar(255))"
-        @matcher.negative_failure_message.should == "expected Item to not have a column :name with type Integer (type found: string, varchar(255))"
+        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to have", "to not have")
       end
     end
     describe "on anonymous Sequel::Model class" do
       it "should set failure messages" do
         @matcher = have_column :password
-        @matcher.matches? Sequel::Model(:items)
-        @matcher.failure_message.should == "expected items to have a column :password"
-        @matcher.negative_failure_message.should == "expected items to not have a column :password"
+        @matcher.matches? Sequel::Model(:comments)
+        @matcher.failure_message.should == "expected comments to have a column :password"
+        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to have", "to not have")
       end
     end
     describe "on Sequel::Model class" do
@@ -69,7 +64,7 @@ describe "have_column_matcher" do
         @matcher = have_column :password
         @matcher.matches? Item
         @matcher.failure_message.should == "expected Item to have a column :password"
-        @matcher.negative_failure_message.should == "expected Item to not have a column :password"
+        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to have", "to not have")
       end
     end
     describe "on Sequel::Model instance" do
@@ -77,7 +72,7 @@ describe "have_column_matcher" do
         @matcher = have_column :password
         @matcher.matches? Item.new
         @matcher.failure_message.should == "expected #<Item @values={}> to have a column :password"
-        @matcher.negative_failure_message.should == "expected #<Item @values={}> to not have a column :password"
+        @matcher.negative_failure_message.should == @matcher.failure_message.gsub("to have", "to not have")
       end
     end
   end

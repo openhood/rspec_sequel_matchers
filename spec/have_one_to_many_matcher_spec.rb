@@ -3,16 +3,10 @@ require File.dirname(__FILE__) + "/spec_helper"
 describe "have_one_to_many_matcher" do
 
   before :all do
-    class Comment < Sequel::Model
-    end
-    class Item < Sequel::Model
+    define_model(:Item){
       one_to_many :comments
-    end
-  end
-
-  after :all do
-    Object.send(:remove_const, :Comment)
-    Object.send(:remove_const, :Item)
+    }
+    define_model(:Comment)
   end
 
   subject{ Item }

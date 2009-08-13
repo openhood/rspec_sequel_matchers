@@ -3,16 +3,12 @@ require File.dirname(__FILE__) + "/spec_helper"
 describe "validate_exact_length_matcher" do
 
   before :all do
-    class Item < Sequel::Model
+    define_model(:Item){
       plugin :validation_helpers
       def validate
         validates_exact_length 4, :name, :allow_nil => true
       end
-    end
-  end
-
-  after :all do
-    Object.send(:remove_const, :Item)
+    }
   end
 
   subject{ Item }
