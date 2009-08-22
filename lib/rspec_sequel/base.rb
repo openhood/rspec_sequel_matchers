@@ -15,7 +15,7 @@ module RspecSequel
         @prefix = "expected #{target.inspect} to"
         valid?(target.db, target, target.class, @attribute, @options)
       else
-        @prefix = "expected #{target.table_name.to_s.singularize.humanize} to"
+        @prefix = "expected #{target.table_name.to_s.classify} to"
         valid?(target.db, target.new, target, @attribute, @options)
       end
     end
