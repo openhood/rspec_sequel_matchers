@@ -56,8 +56,8 @@ describe "have_column_matcher" do
       it "should set failure messages" do
         @matcher = have_column :password
         @matcher.matches? Sequel::Model(:comments)
-        @matcher.failure_message.should == "expected comments to " + @matcher.description
-        @matcher.negative_failure_message.should == "expected comments to not " + @matcher.description
+        @matcher.failure_message.should == "expected Comment to " + @matcher.description
+        @matcher.negative_failure_message.should == "expected Comment to not " + @matcher.description
       end
     end
     describe "on Sequel::Model class" do

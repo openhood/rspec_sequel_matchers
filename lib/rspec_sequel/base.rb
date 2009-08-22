@@ -1,3 +1,5 @@
+require "sequel/extensions/inflector"
+
 module RspecSequel
 
   class Base
@@ -13,9 +15,7 @@ module RspecSequel
         @prefix = "expected #{target.inspect} to"
         valid?(target.db, target, target.class, @attribute, @options)
       else
-        name = target.name
-        name = target.table_name if name.nil? || name==""
-        @prefix = "expected #{name} to"
+        @prefix = "expected #{target.table_name.to_s.singularize.humanize} to"
         valid?(target.db, target.new, target, @attribute, @options)
       end
     end
