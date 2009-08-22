@@ -6,11 +6,11 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "rspec_sequel_matchers"
     gem.summary = %Q{TODO}
-    gem.email = "jonathan@tron.name"
-    gem.homepage = "http://github.com/JonathanTron/rspec_sequel_matchers"
+    gem.email = "team@openhood.com"
+    gem.homepage = "http://github.com/openhood/rspec_sequel_matchers"
     gem.authors = ["Jonathan Tron", "Joseph Halter"]
-    gem.add_dependency "rspec"
-    gem.add_dependency "sequel"
+    gem.add_dependency "rspec", "~> 1.2.3"
+    gem.add_dependency "sequel", ">= 3.1.0"
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
