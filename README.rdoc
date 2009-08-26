@@ -32,7 +32,7 @@ RspecSequel::Matchers has an extensive test suite and will give you as much expl
 
 == Install
 
-  sudo gem install JonathanTron-rspec_sequel_matchers
+  sudo gem install openhood-rspec_sequel_matchers
 
 == Example usage
 
