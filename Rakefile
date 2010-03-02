@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.version = "0.2.0"
     gem.name = "rspec_sequel_matchers"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{RSpec Matchers for Sequel}
     gem.email = "team@openhood.com"
     gem.homepage = "http://github.com/openhood/rspec_sequel_matchers"
     gem.authors = ["Jonathan Tron", "Joseph Halter"]
