@@ -1,4 +1,4 @@
-require "spec"
+require "rspec"
 require "rubygems"
 require "sequel"
 require "sequel/extensions/inflector"
@@ -20,32 +20,32 @@ db.tables.each do |table_name|
 end
 Sequel::Migrator.apply(db, File.join(File.dirname(__FILE__), "migrations"))
 
-def define_model(model, &block)
-  model_name = model.to_s.camelize.to_sym
-  table_name = model.to_s.tableize.to_sym
-  @defined_models ||= []
-  @defined_models << model_name
-  klass = Object.const_set model_name, Sequel::Model(table_name)
-  klass.class_eval &block if block_given?
+module RspecHelpers
+  def define_model(model, &block)
+    model_name = model.to_s.camelize.to_sym
+    table_name = model.to_s.tableize.to_sym
+    @defined_models ||= []
+    @defined_models << model_name
+    klass = Object.const_set model_name, Sequel::Model(table_name)
+    klass.class_eval &block if block_given?
+  end
 end
 
-Spec::Runner.configure do |config|
-  config.include(RspecSequel::Matchers)
-
+Rspec.configure do |c|
+  c.mock_framework = :rspec
+  c.color_enabled = true
+  c.include(RspecHelpers)
+  c.include(RspecSequel::Matchers)
   # undefine models defined via define_model (if any)
-  config.after(:all) do
-    @defined_models.each{|model_name|
-      Object.send(:remove_const, model_name)
-    }
-    @defined_models = nil
-  end
-
   # truncate all tables between each spec
-  config.after(:each) do
+  c.after(:each) do
     db = Sequel::Model.db
     db.tables.each do |table_name|
       db["TRUNCATE #{table_name}"]
     end
+    (@defined_models||[]).each do |model_name|
+      Object.send(:remove_const, model_name)
+    end
+    @defined_models = nil
   end
-
 end

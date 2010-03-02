@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/spec_helper"
 
 describe "validate_length_range_matcher" do
 
-  before :all do
+  before do
     define_model :item do
       plugin :validation_helpers
       def validate

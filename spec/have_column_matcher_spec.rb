@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/spec_helper"
 
 describe "have_column_matcher" do
 
-  before :all do
+  before do
     define_model :item
   end
 

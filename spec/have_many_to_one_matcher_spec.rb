@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/spec_helper"
 
 describe "have_many_to_one_matcher" do
 
-  before :all do
+  before do
     define_model :item
     define_model :comment do
       many_to_one :item
