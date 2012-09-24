@@ -34,6 +34,15 @@ RspecSequel::Matchers has an extensive test suite and will give you as much expl
 
   sudo gem install openhood-rspec_sequel_matchers
 
+== Config
+
+  In spec_helper.rb
+
+    RSpec.configure do |config|
+      config.include RspecSequel::Matchers
+      # ... other config ...
+    end
+
 == Example usage
 
   describe Item do
