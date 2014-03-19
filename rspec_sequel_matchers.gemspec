@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "sequel", ">= 3.8.0"
+  s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
   s.add_development_dependency "sqlite3-ruby"
 end
