@@ -1,9 +1,9 @@
-require "rspec"
 require "rubygems"
+require "rspec"
 require "sequel"
 require "sequel/extensions/inflector"
 require "sequel/extensions/migration"
-require File.join(File.dirname(__FILE__), "..", "lib", "rspec_sequel_matchers")
+require "rspec_sequel_matchers"
 
 # connect to an in-memory database
 begin
