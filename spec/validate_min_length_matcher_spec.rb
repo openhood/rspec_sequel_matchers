@@ -17,22 +17,22 @@ describe "validate_min_length_matcher" do
     it "should require attribute" do
       lambda{
         @matcher = validate_min_length
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should require additionnal parameters" do
       lambda{
         @matcher = validate_min_length :name
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should refuse invalid additionnal parameters" do
       lambda{
         @matcher = validate_min_length :id, :name
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should accept valid additionnal parameters" do
       lambda{
         @matcher = validate_min_length 4, :name
-      }.should_not raise_error(ArgumentError)
+      }.should_not raise_error
     end
   end
 

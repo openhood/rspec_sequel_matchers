@@ -31,7 +31,7 @@ module RspecHelpers
   end
 end
 
-Rspec.configure do |c|
+RSpec.configure do |c|
   c.mock_framework = :rspec
   c.color_enabled = true
   c.include(RspecHelpers)

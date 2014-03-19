@@ -17,12 +17,12 @@ describe "validate_presence_matcher" do
     it "should require attribute" do
       lambda{
         @matcher = validate_presence
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should refuse additionnal parameters" do
       lambda{
         @matcher = validate_presence :name, :id
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
   end
 

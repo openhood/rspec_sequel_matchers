@@ -17,12 +17,12 @@ describe "validate_integer_matcher" do
     it "should require attribute" do
       lambda{
         @matcher = validate_integer
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should refuse additionnal parameters" do
       lambda{
         @matcher = validate_integer :name, :id
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
   end
 

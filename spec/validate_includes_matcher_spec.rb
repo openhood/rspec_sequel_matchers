@@ -17,22 +17,22 @@ describe "validate_includes_matcher" do
     it "should require attribute" do
       lambda{
         @matcher = validate_includes
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should require additionnal parameters" do
       lambda{
         @matcher = validate_includes :name
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should refuse invalid additionnal parameters" do
       lambda{
         @matcher = validate_includes :id, :name
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should accept valid additionnal parameters" do
       lambda{
         @matcher = validate_includes ["Joseph", "Jonathan"], :name
-      }.should_not raise_error(ArgumentError)
+      }.should_not raise_error
     end
   end
 
