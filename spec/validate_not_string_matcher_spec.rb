@@ -17,12 +17,12 @@ describe "validate_not_string_matcher" do
     it "should require attribute" do
       lambda{
         @matcher = validate_not_string
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
     it "should refuse additionnal parameters" do
       lambda{
         @matcher = validate_not_string :name, :id
-      }.should raise_error(ArgumentError)
+      }.should raise_error
     end
   end
 
