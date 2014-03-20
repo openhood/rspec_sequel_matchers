@@ -5,11 +5,19 @@ require "sequel/extensions/inflector"
 require "sequel/extensions/migration"
 require "rspec_sequel_matchers"
 
+def jruby?
+  (defined?(RUBY_ENGINE) && RUBY_ENGINE == 'jruby') || defined?(JRUBY_VERSION)
+end
+
 # connect to an in-memory database
 begin
-  Sequel.sqlite
+  if jruby?
+    Sequel.connect "jdbc:sqlite::memory:"
+  else
+    Sequel.sqlite
+  end
 rescue Sequel::AdapterNotFound
-  puts "sqlite not available. Install it with: sudo gem install sqlite3-ruby"
+  puts "sqlite not available."
   exit 1 # failure
 end
 
