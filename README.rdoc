@@ -1,3 +1,5 @@
+{<img src="https://travis-ci.org/openhood/rspec_sequel_matchers.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/openhood/rspec_sequel_matchers]
+
 = rspec_sequel_matchers
 
 Some Sequel Matchers for RSpec, using no other gem than rspec and sequel themself. As a consequence, you can use these matchers with Rails, Sinatra or any other framework. It's pretty feature complete.
