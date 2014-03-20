@@ -25,6 +25,7 @@ There're also matchers for associations class methods:
 * :many_to_many
 * :many_to_one
 * :one_to_many
+* :one_to_one
 
 And there's an additionnal matcher have_column to check columns existance and their type, see example usage bellow.
 
