@@ -1,6 +1,9 @@
-{<img src="https://travis-ci.org/openhood/rspec_sequel_matchers.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/openhood/rspec_sequel_matchers]
+[![Build Status](https://travis-ci.org/openhood/rspec_sequel_matchers.svg?branch=master)](https://travis-ci.org/openhood/rspec_sequel_matchers)
 
-= rspec_sequel_matchers
+# rspec_sequel_matchers
+
+**Starting with version 0.4.0 this gem is only compatible with `RSpec >= 3.x`, if
+you want to use it with `RSpec < 3.x` use the 0.3.x versions.**
 
 Some Sequel Matchers for RSpec, using no other gem than rspec and sequel themself. As a consequence, you can use these matchers with Rails, Sinatra or any other framework. It's pretty feature complete.
 
@@ -33,27 +36,39 @@ And there's an additionnal matcher have_column to check columns existance and th
 
 RspecSequel::Matchers has an extensive test suite and will give you as much explanation as possible in failure messages such as expected column type versus column type found in database.
 
-== Install
+## Install
 
-  sudo gem install openhood-rspec_sequel_matchers
+```sh
+gem install rspec_sequel_matchers
+```
 
-== Config
+or with `Bundler`, put in you `Gemfile`:
 
-  In spec_helper.rb
+```ruby
+gem "rspec_sequel_matchers", group: :test
+```
 
-    RSpec.configure do |config|
-      config.include RspecSequel::Matchers
-      # ... other config ...
-    end
+## Config
 
-== Example usage
+In spec_helper.rb
 
-  describe Item do
-    it{ should have_column :name, :type => String }
-    it{ should_not have_column :wrong_name }
-    it{ should_validate_presence :name, :allow_nil => true }
-  end
+```ruby
+RSpec.configure do |config|
+  config.include RspecSequel::Matchers
+  # ... other config ...
+end
+```
 
-== Copyright
+## Example usage
 
-Copyright (c) 2009 Jonathan Tron - Joseph Halter. See LICENSE for details.
+```ruby
+describe Item do
+  it{ is_expected.to have_column :name, :type => String }
+  it{ is_expected.not_to have_column :wrong_name }
+  it{ is_expected.to validate_presence :name, :allow_nil => true }
+end
+```
+
+## Copyright
+
+Copyright (c) 2009-2014 Jonathan Tron - Joseph Halter. See LICENSE for details.

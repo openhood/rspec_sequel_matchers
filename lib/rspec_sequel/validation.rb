@@ -44,7 +44,7 @@ module RspecSequel
       called_count = 0
       i = i.dup
       i.class.columns # ensure colums are read again after .dup
-      i.stub(validation_type).and_return{|*args|
+      allow(i).to receive(validation_type) do |*args|
         called_options = args.last.is_a?(Hash) ? args.pop : {}
         called_attributes = args_to_called_attributes(args)
         called_additionnal = args.shift if additionnal_param_required?
@@ -59,7 +59,7 @@ module RspecSequel
             called_count += 1
           end
         end
-      }
+      end
       i.valid?
       if called_count>1
         @suffix << "but validation is called too many times"
@@ -67,7 +67,7 @@ module RspecSequel
       end
       called_count==1
     end
-    
+
     def args_to_called_attributes(args)
       [args.pop].flatten
     end

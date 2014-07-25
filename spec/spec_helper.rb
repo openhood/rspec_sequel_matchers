@@ -41,7 +41,6 @@ end
 
 RSpec.configure do |c|
   c.mock_framework = :rspec
-  c.color_enabled = true
   c.include(RspecHelpers)
   c.include(RspecSequel::Matchers)
   # undefine models defined via define_model (if any)
