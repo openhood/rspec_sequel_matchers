@@ -1,5 +1,5 @@
 require "sequel"
-require "sequel/extensions/inflector"
+require "sequel/extensions/inflector" unless ''.respond_to?(:classify)
 require "rspec/mocks"
 require "rspec/mocks/example_methods"
 
