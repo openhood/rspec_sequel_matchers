@@ -31,6 +31,7 @@ There're also matchers for associations class methods:
 * :many_to_one
 * :one_to_many
 * :one_to_one
+* :many_through_many
 
 And there's an additionnal matcher have_column to check columns existance and their type, see example usage bellow.
 
