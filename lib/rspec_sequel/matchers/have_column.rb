@@ -10,7 +10,7 @@ module RspecSequel
 
       def valid?(db, i, c, attribute, options)
 
-        # check column existance
+        # check column existence
         col = db.schema(c.table_name).detect{|col| col[0]==attribute}
         matching = !col.nil?
 
