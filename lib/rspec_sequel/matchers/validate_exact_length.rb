@@ -9,7 +9,7 @@ module RspecSequel
       end
 
       def additionnal_param_type
-        Fixnum
+        Integer
       end
 
       def validation_type
