@@ -1,6 +1,6 @@
 class CreateProfile < Sequel::Migration
   def up
-    create_table :profile do
+    create_table :profiles do
       primary_key :id
       foreign_key :item_id, :items, :type => Integer
       DateTime    :created_at
@@ -13,6 +13,6 @@ class CreateProfile < Sequel::Migration
   end
 
   def down
-    drop_table :profile
+    drop_table :profiles
   end
 end

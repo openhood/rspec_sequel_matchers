@@ -17,12 +17,12 @@ describe "validate_not_string_matcher" do
     it "should require attribute" do
       expect do
         @matcher = validate_not_string
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
     it "should refuse additionnal parameters" do
       expect do
         @matcher = validate_not_string :name, :id
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
   end
 

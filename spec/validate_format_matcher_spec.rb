@@ -17,17 +17,17 @@ describe "validate_format_matcher" do
     it "should require attribute" do
       expect do
         @matcher = validate_format
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
     it "should require additionnal parameters" do
       expect do
         @matcher = validate_format :name
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
     it "should refuse invalid additionnal parameters" do
       expect do
         @matcher = validate_format :id, :name
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
     it "should accept valid additionnal parameters" do
       expect do

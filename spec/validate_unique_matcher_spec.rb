@@ -17,12 +17,12 @@ describe "validate_unique_matcher" do
     it "should require attribute" do
       expect do
         @matcher = validate_unique
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
     it "should refuse additionnal parameters" do
       expect do
         @matcher = validate_unique :name, :id
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
   end
 

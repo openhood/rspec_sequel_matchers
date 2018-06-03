@@ -17,17 +17,17 @@ describe "validate_exact_length_matcher" do
     it "should require attribute" do
       expect do
         @matcher = validate_exact_length
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
     it "should require additionnal parameters" do
       expect do
         @matcher = validate_exact_length :name
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
     it "should refuse invalid additionnal parameters" do
       expect do
         @matcher = validate_exact_length :id, :name
-      end.to raise_error
+      end.to raise_error(ArgumentError)
     end
     it "should accept valid additionnal parameters" do
       expect do
