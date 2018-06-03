@@ -1,9 +1,9 @@
 class CreateComments < Sequel::Migration
 
   def up
-    create_table  :comments do 
+    create_table  :comments do
       primary_key :id
-      foreign_key :item_id, :items, :type => Fixnum
+      foreign_key :item_id, :items, :type => Integer
       String      :content
       DateTime    :created_at
       index       :item_id

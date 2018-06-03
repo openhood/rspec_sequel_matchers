@@ -1,9 +1,9 @@
 class CreateCommentsItems < Sequel::Migration
 
   def up
-    create_table  :comments_items do 
-      foreign_key :comment_id, :comments, :type => Fixnum
-      foreign_key :item_id, :items, :type => Fixnum
+    create_table  :comments_items do
+      foreign_key :comment_id, :comments, :type => Integer
+      foreign_key :item_id, :items, :type => Integer
       index       [:comment_id, :item_id], :unique => true
     end
   end
