@@ -5,9 +5,10 @@
 **Starting with version 0.4.0 this gem is only compatible with `RSpec >= 3.x`, if
 you want to use it with `RSpec < 3.x` use the 0.3.x versions.**
 
-Some Sequel Matchers for RSpec, using no other gem than rspec and sequel themself. As a consequence, you can use these matchers with Rails, Sinatra or any other framework. It's pretty feature complete.
+Some Sequel Matchers for RSpec, using no other gems than RSpec and Sequel themselves. As a consequence, you can use these matchers with Rails, Sinatra or any other framework. It's pretty feature complete.
 
-Matchers assume that you're using the recommanded validation_helpers plugin. All instance validation methods are supported, namely:
+Matchers assume that you're using the recommended `validation_helpers` plugin. All instance validation methods are supported, namely:
+
 * validates_exact_length
 * validates_format
 * validates_includes
@@ -21,19 +22,21 @@ Matchers assume that you're using the recommanded validation_helpers plugin. All
 * validates_unique
 
 Each one with all possible options, namely:
+
 * :allow_blank
 * :allow_missing
 * :allow_nil
 * :message
 
 There're also matchers for associations class methods:
+
 * :many_to_many
 * :many_to_one
 * :one_to_many
 * :one_to_one
 * :many_through_many
 
-And there's an additionnal matcher have_column to check columns existance and their type, see example usage bellow.
+And there's an additional matcher have_column to check columns existence and their type, see example usage below.
 
 RspecSequel::Matchers has an extensive test suite and will give you as much explanation as possible in failure messages such as expected column type versus column type found in database.
 
@@ -64,9 +67,9 @@ end
 
 ```ruby
 describe Item do
-  it{ is_expected.to have_column :name, :type => String }
-  it{ is_expected.not_to have_column :wrong_name }
-  it{ is_expected.to validate_presence :name, :allow_nil => true }
+  it { is_expected.to have_column :name, :type => String }
+  it { is_expected.not_to have_column :wrong_name }
+  it { is_expected.to validate_presence :name, :allow_nil => true }
 end
 ```
 
